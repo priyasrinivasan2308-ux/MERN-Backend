@@ -7,20 +7,26 @@ const SignupUser = async(req,res) =>{
             name,
             email,
             password,
-            confirm
+            confirm,
         });
 
-        const saveUser = await newUser.save();
-        res.status(201).json(saveUser);
-        message: "User created successfully",
+        const savedUser = await newUser.save();
+        res.status(201).json({
+        message: "user created successfully",
         user: saveUser
     });
 
-    }catch(error)
+    }catch(error){
     res.status(402).json({
-        message:"Error creating user";
-        error:error:error.message
-    )    
-    
-    
+        message:"internal server error",
+        error:error.message
+   } )    
+   
+    }
 }
+module.exports={
+    SignupUser,
+
+
+};
+    
